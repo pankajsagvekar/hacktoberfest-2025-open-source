@@ -1,6 +1,7 @@
 package com.todo_app.todo_app.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,12 @@ public class TodoController {
     return ResponseEntity.ok(todo);
   }
 
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Map<String, String>> deleteTodoById(@PathVariable Long id) {
+    Map<String, String> response = new HashMap<>();
+    response.put("message", "Todo with ID " + id + " deleted successfully.");
+    return ResponseEntity.ok(response);
+  }
 
   private List<Map<String, Object>> generateTodos(int count) {
     List<Map<String, Object>> todos = new ArrayList<>();
